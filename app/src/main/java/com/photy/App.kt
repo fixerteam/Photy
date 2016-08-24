@@ -1,8 +1,7 @@
 package com.photy
 
 import android.app.Application
-import com.photy.data.api.ApiModule
-import com.photy.AppComponent
+import com.photy.data.NetworkModule
 
 class App : Application() {
 
@@ -13,7 +12,7 @@ class App : Application() {
   override fun onCreate() {
     super.onCreate()
     appComponent = DaggerAppComponent.builder()
-        .apiModule(ApiModule())
+        .networkModule(NetworkModule())
         .build()
   }
 }

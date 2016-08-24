@@ -1,22 +1,21 @@
 package com.photy.ui.base
 
-import android.support.annotation.UiThread
 import java.lang.ref.WeakReference
 
-open class BasePresenter<M, V : BaseView<M>> {
+abstract class BasePresenter<V : BaseView> {
 
-  var viewRef : WeakReference<V>? = null
+  private var viewRef : WeakReference<V>? = null
 
-  @UiThread fun attachView(view: V) {
+  abstract fun init()
+
+  fun attachView(view: V) {
     viewRef = WeakReference(view)
   }
 
-  @UiThread fun getView() = viewRef?.get()
-
-  @UiThread fun isViewAttached() = viewRef?.get() != null
-
-  @UiThread fun detachView() {
+  fun detachView() {
     viewRef?.clear()
     viewRef = null
   }
+
+  protected fun getView() = viewRef?.get()
 }

@@ -1,16 +1,10 @@
 package com.photy.ui.base
 
-import android.support.annotation.UiThread
+interface BaseView {
 
-interface BaseView<M> {
+  fun showLoading()
 
-  @UiThread fun showLoading(pullToRefresh: Boolean)
+  fun hideLoading()
 
-  @UiThread fun showContent()
-
-  @UiThread fun showError(error: Throwable, pullToRefresh: Boolean)
-
-  @UiThread fun setData(data: M)
-
-  @UiThread fun loadData(pullToRefresh: Boolean)
+  fun showError(error: String)
 }

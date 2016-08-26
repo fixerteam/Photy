@@ -14,7 +14,7 @@ android {
     versionName "1.0"
 
     buildConfigField "String", "API_URL", "\"https://api.500px.com\""
-    buildConfigField "String", "CONSUMER_KEY", "\"" + consumerKey + "\""
+    buildConfigField "String", "CONSUMER_KEY", "\"rern897j7IkWuAs77KqCcbmjl3bG2kYthLVrj49S\""
   }
   buildTypes {
     release {
@@ -35,6 +35,7 @@ def appcompatVersion = "24.1.1"
 def ankoVersion = "0.8.3"
 def retrofitVersion = "2.0.0"
 def okHttpVersion = "3.2.0"
+def daggerVersion = "2.0.2"
 
 dependencies {
   compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -51,8 +52,9 @@ dependencies {
   compile "com.squareup.retrofit2:adapter-rxjava:$retrofitVersion"
   compile "com.squareup.okhttp3:logging-interceptor:$okHttpVersion"
   compile "com.squareup.okhttp3:okhttp:$okHttpVersion"
-  compile 'com.google.dagger:dagger:2.0.2'
-  kapt 'com.google.dagger:dagger-compiler:2.0.2'
+  compile "com.google.dagger:dagger:$daggerVersion"
+  kapt "com.google.dagger:dagger-compiler:$daggerVersion"
+  compile 'com.github.bumptech.glide:glide:3.7.0'
   provided 'javax.annotation:jsr250-api:1.0'
   compile 'io.reactivex:rxandroid:1.1.0'
   compile 'io.reactivex:rxjava:1.1.1'

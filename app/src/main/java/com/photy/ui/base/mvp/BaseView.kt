@@ -1,4 +1,4 @@
-package com.photy.ui.base
+package com.photy.ui.base.mvp
 
 interface BaseView {
 

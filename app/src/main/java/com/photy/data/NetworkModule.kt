@@ -2,6 +2,7 @@ package com.photy.data
 
 import com.fasterxml.jackson.databind.DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.databind.PropertyNamingStrategy.SNAKE_CASE
 import com.photy.BuildConfig.API_URL
 import com.photy.data.provider.CacheProvider
 import com.photy.data.provider.NetworkProvider
@@ -17,7 +18,7 @@ import javax.inject.Singleton
 
 @Module class NetworkModule {
   @Provides @Singleton fun provideJacksonMapper(): ObjectMapper =
-      ObjectMapper().disable(FAIL_ON_UNKNOWN_PROPERTIES)
+      ObjectMapper().disable(FAIL_ON_UNKNOWN_PROPERTIES).setPropertyNamingStrategy(SNAKE_CASE)
 
   @Provides @Singleton fun provideOkHttpClient(): OkHttpClient =
       OkHttpClient.Builder()

@@ -1,4 +1,4 @@
-package com.photy.ui.base
+package com.photy.ui.base.mvp
 
 import java.lang.ref.WeakReference
 
@@ -12,7 +12,7 @@ abstract class BasePresenter<V : BaseView> {
     viewRef = WeakReference(view)
   }
 
-  fun detachView() {
+  open fun detachView() {
     viewRef?.clear()
     viewRef = null
   }

@@ -1,10 +1,16 @@
 package com.photy.ui.photos
 
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.RecyclerView.OnScrollListener
+import android.view.ViewGroup
 import com.photy.App.Companion.appComponent
 import com.photy.R
 import com.photy.data.entity.Photo
-import com.photy.ui.base.BaseActivity
+import com.photy.ui.base.adapter.BaseAdapter
+import com.photy.ui.base.mvp.BaseActivity
 import com.photy.ui.photos.PhotosPresenter.PhotosView
+import kotlinx.android.synthetic.main.w_photos.*
 import org.jetbrains.anko.toast
 
 class PhotosActivity : BaseActivity(), PhotosView {
@@ -19,6 +25,24 @@ class PhotosActivity : BaseActivity(), PhotosView {
     photoPresenter = appComponent.getPhotoPresenter()
     photoPresenter.attachView(this)
     photoPresenter.init()
+
+    list.layoutManager = LinearLayoutManager(this)
+    list.adapter = object : BaseAdapter<Photo, PhotoHolder>() {
+      override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = PhotoHolder(parent)
+    }
+    list.addOnScrollListener(object : OnScrollListener() {
+      override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
+        if (dy > 0) {
+          val manager = list.layoutManager as LinearLayoutManager
+          val visibleChildCount = manager.childCount
+          val totalItemCount = manager.itemCount
+          val pastVisibleItems = manager.findFirstVisibleItemPosition()
+          if ((visibleChildCount + pastVisibleItems) >= totalItemCount) {
+            photoPresenter.loadMore()
+          }
+        }
+      }
+    })
   }
 
   override fun hideLoading() {
@@ -34,6 +58,6 @@ class PhotosActivity : BaseActivity(), PhotosView {
   }
 
   override fun showPhotos(photos: List<Photo>) {
-
+    (list.adapter as BaseAdapter<Photo, PhotoHolder>).addItems(photos)
   }
 }

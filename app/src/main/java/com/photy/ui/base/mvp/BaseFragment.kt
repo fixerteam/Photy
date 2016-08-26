@@ -1,4 +1,4 @@
-package com.photy.ui.base
+package com.photy.ui.base.mvp
 
 import android.os.Bundle
 import android.support.annotation.LayoutRes

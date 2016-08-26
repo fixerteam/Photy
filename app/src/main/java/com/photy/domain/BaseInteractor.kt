@@ -11,15 +11,12 @@ abstract class BaseInteractor<T> {
   private var subscription = Subscriptions.empty()
 
   /**
-   * Формирует {@link rx.Single} для получения и обработки данных для текущего Interactor
+   * Запускает Observable в IO потоке
+   * @param observable - что выполнить
+   * @param subscriber - куда вернуть результат
    */
-  protected abstract fun buildInteractionStream(): Single<T>
-
-  /**
-   * Запускает текущий Interactor на выполнение
-   */
-  fun execute(subscriber: SingleSubscriber<T>) {
-    subscription = buildInteractionStream()
+  protected fun execute(observable: Single<T>, subscriber: SingleSubscriber<T>) {
+    subscription = observable
         .subscribeOn(io())
         .observeOn(mainThread())
         .subscribe(subscriber)
@@ -29,6 +26,6 @@ abstract class BaseInteractor<T> {
    * Прерывает выполнение текущего Interactor
    */
   fun unsubscribe() {
-    subscription.unsubscribe()
+    this.subscription.unsubscribe()
   }
 }

@@ -1,9 +1,8 @@
-package com.photy.ui.base
+package com.photy.ui.base.mvp
 
 import android.os.Bundle
 import android.support.annotation.LayoutRes
 import android.support.v7.app.AppCompatActivity
-import kotlinx.android.synthetic.*
 
 abstract class BaseActivity : AppCompatActivity() {
 
@@ -22,7 +21,6 @@ abstract class BaseActivity : AppCompatActivity() {
 
   override fun onDestroy() {
     super.onDestroy()
-    clearFindViewByIdCache()
     getPresenter()?.detachView()
   }
 

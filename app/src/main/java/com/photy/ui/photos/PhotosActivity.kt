@@ -14,7 +14,13 @@ import org.jetbrains.anko.toast
 
 class PhotosActivity : BaseActivity(), PhotosView {
 
-  lateinit var photoPresenter: PhotosPresenter
+  private val listAdapter by lazy {
+    object : BaseAdapter<Photo, PhotoHolder>() {
+      override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = PhotoHolder(parent)
+    }
+  }
+
+  private lateinit var photoPresenter: PhotosPresenter
 
   override fun getLayout() = R.layout.w_photos
 
@@ -25,25 +31,25 @@ class PhotosActivity : BaseActivity(), PhotosView {
     initRecyclerView()
   }
 
-  override fun hideLoading() {}
+  override fun hideLoading() {
+  }
 
   override fun showError(error: String) {
     toast(error)
   }
 
-  override fun showLoading() {}
+  override fun showLoading() {
+  }
 
   override fun showPhotos(photos: List<Photo>) {
-    (list.adapter as BaseAdapter<Photo, PhotoHolder>).addItems(photos)
+    listAdapter.addItems(photos)
   }
 
   private fun initRecyclerView() {
     val manager = LinearLayoutManager(this)
     list.layoutManager = manager
     list.addOnScrollListener(EndlessScrollListener(manager) { photoPresenter.loadMore() })
-    list.adapter = object : BaseAdapter<Photo, PhotoHolder>() {
-      override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = PhotoHolder(parent)
-    }
+    list.adapter = listAdapter
   }
 
   private fun initPresenter() {

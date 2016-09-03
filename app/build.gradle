@@ -3,13 +3,13 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
 
 android {
-  compileSdkVersion 24
-  buildToolsVersion "23.0.3"
+  compileSdkVersion versions.COMPILE_SDK
+  buildToolsVersion versions.BUILD_TOOLS
 
   defaultConfig {
     applicationId "com.photy"
-    minSdkVersion 15
-    targetSdkVersion 24
+    minSdkVersion versions.MIN_SDK
+    targetSdkVersion versions.TARGET_SDK
     versionCode 1
     versionName "1.0"
 
@@ -31,46 +31,57 @@ kapt {
   generateStubs = true
 }
 
-def appcompatVersion = "24.1.1"
-def ankoVersion = "0.8.3"
-def retrofitVersion = "2.0.0"
-def okHttpVersion = "3.2.0"
-def daggerVersion = "2.0.2"
-
 dependencies {
   compile fileTree(dir: 'libs', include: ['*.jar'])
-  compile "com.android.support:support-v4:$appcompatVersion"
-  compile "com.android.support:appcompat-v7:$appcompatVersion"
-  compile "com.android.support:recyclerview-v7:$appcompatVersion"
-  compile "com.android.support:design:$appcompatVersion"
-  compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-  compile "org.jetbrains.anko:anko-sdk15:$ankoVersion"
-  compile "org.jetbrains.anko:anko-support-v4:$ankoVersion"
-  compile "org.jetbrains.anko:anko-appcompat-v7:$ankoVersion"
-  compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
-  compile "com.squareup.retrofit2:converter-jackson:$retrofitVersion"
-  compile "com.squareup.retrofit2:adapter-rxjava:$retrofitVersion"
-  compile "com.squareup.okhttp3:logging-interceptor:$okHttpVersion"
-  compile "com.squareup.okhttp3:okhttp:$okHttpVersion"
-  compile "com.google.dagger:dagger:$daggerVersion"
-  kapt "com.google.dagger:dagger-compiler:$daggerVersion"
-  compile 'com.github.bumptech.glide:glide:3.7.0'
-  provided 'javax.annotation:jsr250-api:1.0'
-  compile 'io.reactivex:rxandroid:1.1.0'
-  compile 'io.reactivex:rxjava:1.1.1'
 
-  testCompile 'junit:junit:4.12'
+  // Support dependencies
+  compile "com.android.support:support-v4:$versions.ANDROID_SUPPORT"
+  compile "com.android.support:appcompat-v7:$versions.ANDROID_SUPPORT"
+  compile "com.android.support:recyclerview-v7:$versions.ANDROID_SUPPORT"
+  compile "com.android.support:design:$versions.ANDROID_SUPPORT"
+
+  // Kotlin dependencies
+  compile "org.jetbrains.kotlin:kotlin-stdlib:$versions.KOTLIN"
+
+  // Rx dependencies
+  compile "io.reactivex:rxandroid:$versions.RX_ANDROID"
+  compile "io.reactivex:rxjava:$versions.RX_JAVA"
+
+  // Dagger dependencies
+  compile "com.google.dagger:dagger:$versions.DAGGER"
+  kapt "com.google.dagger:dagger-compiler:$versions.DAGGER"
+
+  // Anko dependencies
+  compile "org.jetbrains.anko:anko-sdk15:$versions.ANKO"
+  compile "org.jetbrains.anko:anko-support-v4:$versions.ANKO"
+  compile "org.jetbrains.anko:anko-appcompat-v7:$versions.ANKO"
+
+  // Retrofit dependencies
+  compile "com.squareup.retrofit2:retrofit:$versions.RETROFIT"
+  compile "com.squareup.retrofit2:converter-jackson:$versions.RETROFIT"
+  compile "com.squareup.retrofit2:adapter-rxjava:$versions.RETROFIT"
+
+  // Okhttp dependencies
+  compile "com.squareup.okhttp3:logging-interceptor:$versions.OK_HTTP"
+  compile "com.squareup.okhttp3:okhttp:$versions.OK_HTTP"
+
+  // Other dependencies
+  compile "com.github.bumptech.glide:glide:$versions.GLIDE"
+  provided "javax.annotation:jsr250-api:$versions.JSR_250"
+
+  // Tests dependencies
+  testCompile "junit:junit:$versions.JUNIT"
 }
 
 buildscript {
-  ext.kotlin_version = '1.0.1-2'
   repositories {
     mavenCentral()
   }
   dependencies {
-    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.KOTLIN"
   }
 }
+
 repositories {
   mavenCentral()
 }

@@ -33,26 +33,43 @@ kapt {
 
 dependencies {
   compile fileTree(dir: 'libs', include: ['*.jar'])
+
+  // Support dependencies
   compile "com.android.support:support-v4:$versions.ANDROID_SUPPORT"
   compile "com.android.support:appcompat-v7:$versions.ANDROID_SUPPORT"
   compile "com.android.support:recyclerview-v7:$versions.ANDROID_SUPPORT"
   compile "com.android.support:design:$versions.ANDROID_SUPPORT"
+
+  // Kotlin dependencies
   compile "org.jetbrains.kotlin:kotlin-stdlib:$versions.KOTLIN"
-  compile "org.jetbrains.anko:anko-sdk15:$versions.ANKO"
-  compile "org.jetbrains.anko:anko-support-v4:$versions.ANKO"
-  compile "org.jetbrains.anko:anko-appcompat-v7:$versions.ANKO"
-  compile "com.squareup.retrofit2:retrofit:$versions.RETROFIT"
-  compile "com.squareup.retrofit2:converter-jackson:$versions.RETROFIT"
-  compile "com.squareup.retrofit2:adapter-rxjava:$versions.RETROFIT"
-  compile "com.squareup.okhttp3:logging-interceptor:$versions.OK_HTTP"
-  compile "com.squareup.okhttp3:okhttp:$versions.OK_HTTP"
-  compile "com.google.dagger:dagger:$versions.DAGGER"
-  kapt "com.google.dagger:dagger-compiler:$versions.DAGGER"
-  compile "com.github.bumptech.glide:glide:$versions.GLIDE"
-  provided "javax.annotation:jsr250-api:$versions.JSR_250"
+
+  // Rx dependencies
   compile "io.reactivex:rxandroid:$versions.RX_ANDROID"
   compile "io.reactivex:rxjava:$versions.RX_JAVA"
 
+  // Dagger dependencies
+  compile "com.google.dagger:dagger:$versions.DAGGER"
+  kapt "com.google.dagger:dagger-compiler:$versions.DAGGER"
+
+  // Anko dependencies
+  compile "org.jetbrains.anko:anko-sdk15:$versions.ANKO"
+  compile "org.jetbrains.anko:anko-support-v4:$versions.ANKO"
+  compile "org.jetbrains.anko:anko-appcompat-v7:$versions.ANKO"
+
+  // Retrofit dependencies
+  compile "com.squareup.retrofit2:retrofit:$versions.RETROFIT"
+  compile "com.squareup.retrofit2:converter-jackson:$versions.RETROFIT"
+  compile "com.squareup.retrofit2:adapter-rxjava:$versions.RETROFIT"
+
+  // Okhttp dependencies
+  compile "com.squareup.okhttp3:logging-interceptor:$versions.OK_HTTP"
+  compile "com.squareup.okhttp3:okhttp:$versions.OK_HTTP"
+
+  // Other dependencies
+  compile "com.github.bumptech.glide:glide:$versions.GLIDE"
+  provided "javax.annotation:jsr250-api:$versions.JSR_250"
+
+  // Tests dependencies
   testCompile "junit:junit:$versions.JUNIT"
 }
 

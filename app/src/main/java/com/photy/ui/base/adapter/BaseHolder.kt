@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
-abstract class BaseHolder<in T> (itemView: View) : RecyclerView.ViewHolder(itemView) {
+abstract class BaseHolder<in T>(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
   constructor(parent: ViewGroup, @LayoutRes layout: Int) : this(
       LayoutInflater.from(parent.context).inflate(layout, parent, false))

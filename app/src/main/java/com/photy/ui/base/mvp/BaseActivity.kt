@@ -6,9 +6,9 @@ import android.support.v7.app.AppCompatActivity
 
 abstract class BaseActivity : AppCompatActivity() {
 
-  @LayoutRes abstract fun getLayout() : Int
+  @LayoutRes abstract fun getLayout(): Int
 
-  abstract fun getPresenter() : BasePresenter<*>?
+  abstract fun getPresenter(): BasePresenter<*>?
 
   abstract fun onViewCreated()
 

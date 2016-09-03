@@ -18,7 +18,7 @@ class PhotoInteractor @Inject constructor(
   private var isLoading = false
 
   fun loadPopularPhotos(subscriber: SingleSubscriber<List<Photo>>, sortBy: Sort = Sort.CREATED_AT) {
-    if (!loadMore) return
+    if (! loadMore) return
     if (isLoading) return
 
     isLoading = true
@@ -28,11 +28,11 @@ class PhotoInteractor @Inject constructor(
         "image_size" to "21",
         "page" to currentPage.toString(),
         "consumer_key" to CONSUMER_KEY))
-        .flatMap {
-          this.isLoading = false
-          this.loadMore = currentPage <= it.totalPages
-          this.currentPage++
-          return@flatMap just(it.photos)
-        }, subscriber)
+                .flatMap {
+                  this.isLoading = false
+                  this.loadMore = currentPage <= it.totalPages
+                  this.currentPage ++
+                  return@flatMap just(it.photos)
+                }, subscriber)
   }
 }

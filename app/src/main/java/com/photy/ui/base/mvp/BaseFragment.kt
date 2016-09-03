@@ -11,9 +11,9 @@ import kotlinx.android.synthetic.*
 
 abstract class BaseFragment : Fragment() {
 
-  @LayoutRes abstract fun getLayout() : Int
+  @LayoutRes abstract fun getLayout(): Int
 
-  abstract fun getPresenter() : BasePresenter<*>?
+  abstract fun getPresenter(): BasePresenter<*>?
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)

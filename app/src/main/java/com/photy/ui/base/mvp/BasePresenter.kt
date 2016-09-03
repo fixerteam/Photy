@@ -4,7 +4,7 @@ import java.lang.ref.WeakReference
 
 abstract class BasePresenter<V : BaseView> {
 
-  private var viewRef : WeakReference<V>? = null
+  private var viewRef: WeakReference<V>? = null
 
   abstract fun init()
 

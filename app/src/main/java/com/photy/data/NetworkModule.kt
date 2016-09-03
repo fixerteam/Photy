@@ -34,7 +34,7 @@ import javax.inject.Singleton
           .build()
           .create(NetworkProvider::class.java)
 
-  @Provides @Singleton fun provideCache() : CacheProvider = object : CacheProvider {
+  @Provides @Singleton fun provideCache(): CacheProvider = object : CacheProvider {
 
   }
 }

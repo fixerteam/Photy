@@ -1,5 +1,8 @@
 package com.photy.data.entity
 
+import com.photy.ui.base.adapter.ViewType
+import com.photy.ui.base.adapter.ViewTypeConst.PHOTO
+
 class PhotosResponse {
   var currentPage: Int = 0
   var totalPages: Int = 0
@@ -7,7 +10,9 @@ class PhotosResponse {
   var photos: List<Photo> = emptyList()
 }
 
-class Photo {
+class Photo : ViewType {
+  override fun getViewType() = PHOTO
+
   var id: Long = 0L
   var name: String = ""
   var description: String? = null

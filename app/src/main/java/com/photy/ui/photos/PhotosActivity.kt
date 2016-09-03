@@ -1,23 +1,24 @@
 package com.photy.ui.photos
 
 import android.support.v7.widget.LinearLayoutManager
-import android.view.ViewGroup
 import com.photy.App.Companion.appComponent
 import com.photy.R
 import com.photy.data.entity.Photo
 import com.photy.ui.base.adapter.BaseAdapter
 import com.photy.ui.base.adapter.EndlessScrollListener
+import com.photy.ui.base.adapter.LoadingAdapter
+import com.photy.ui.base.adapter.ViewTypeConst.LOADING
+import com.photy.ui.base.adapter.ViewTypeConst.PHOTO
 import com.photy.ui.base.mvp.BaseActivity
 import com.photy.ui.photos.PhotosPresenter.PhotosView
+import com.photy.ui.photos.adapter.PhotosAdapter
 import kotlinx.android.synthetic.main.w_photos.*
 import org.jetbrains.anko.toast
 
 class PhotosActivity : BaseActivity(), PhotosView {
 
   private val listAdapter by lazy {
-    object : BaseAdapter<Photo, PhotoHolder>() {
-      override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = PhotoHolder(parent)
-    }
+    BaseAdapter<Photo>(LOADING to LoadingAdapter(), PHOTO to PhotosAdapter())
   }
 
   private lateinit var photoPresenter: PhotosPresenter

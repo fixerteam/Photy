@@ -1,4 +1,4 @@
-package com.photy.ui.photos
+package com.photy.ui.photos.adapter
 
 import android.view.ViewGroup
 import android.widget.ImageView

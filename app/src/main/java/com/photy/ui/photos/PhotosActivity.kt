@@ -22,42 +22,53 @@ class PhotosActivity : BaseActivity(), PhotosView {
   override fun getPresenter() = photoPresenter
 
   override fun onViewCreated() {
-    photoPresenter = appComponent.getPhotoPresenter()
-    photoPresenter.attachView(this)
-    photoPresenter.init()
+    initPresenter()
+    initRecyclerView()
+  }
 
+  override fun hideLoading() {}
+
+  override fun showError(error: String) {
+    toast(error)
+  }
+
+  override fun showLoading() {}
+
+  override fun showPhotos(photos: List<Photo>) {
+    (list.adapter as BaseAdapter<Photo, PhotoHolder>).addItems(photos)
+  }
+
+  private fun initRecyclerView() {
     list.layoutManager = LinearLayoutManager(this)
     list.adapter = object : BaseAdapter<Photo, PhotoHolder>() {
       override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = PhotoHolder(parent)
     }
     list.addOnScrollListener(object : OnScrollListener() {
       override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
-        if (dy > 0) {
-          val manager = list.layoutManager as LinearLayoutManager
-          val visibleChildCount = manager.childCount
-          val totalItemCount = manager.itemCount
-          val pastVisibleItems = manager.findFirstVisibleItemPosition()
-          if ((visibleChildCount + pastVisibleItems) >= totalItemCount) {
-            photoPresenter.loadMore()
-          }
-        }
+        checkScrollDown(dy)
       }
     })
   }
 
-  override fun hideLoading() {
-
+  private fun checkScrollDown(dy: Int) {
+    if (dy > 0) {
+      onScrolledEnd()
+    }
   }
 
-  override fun showError(error: String) {
-    toast(error)
+  private fun initPresenter() {
+    photoPresenter = appComponent.getPhotoPresenter()
+    photoPresenter.attachView(this)
+    photoPresenter.init()
   }
 
-  override fun showLoading() {
-
-  }
-
-  override fun showPhotos(photos: List<Photo>) {
-    (list.adapter as BaseAdapter<Photo, PhotoHolder>).addItems(photos)
+  private fun onScrolledEnd() {
+    val manager = list.layoutManager as LinearLayoutManager
+    val visibleChildCount = manager.childCount
+    val totalItemCount = manager.itemCount
+    val pastVisibleItems = manager.findFirstVisibleItemPosition()
+    if ((visibleChildCount + pastVisibleItems) >= totalItemCount) {
+      photoPresenter.loadMore()
+    }
   }
 }

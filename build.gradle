@@ -29,7 +29,7 @@ ext.versions = [
         BUILD_TOOLS: "23.0.3",
         KOTLIN: "1.0.1-2",
         ANKO: "0.8.3",
-        ANDROID_SUPPORT: "24.1.1",
+        ANDROID_SUPPORT: "24.2.0",
         RETROFIT: "2.0.0",
         OK_HTTP: "3.2.0",
         DAGGER: "2.0.2",

@@ -22,20 +22,25 @@ task clean(type: Delete) {
   delete rootProject.buildDir
 }
 
-ext.versions = [
-        COMPILE_SDK: 24,
-        MIN_SDK: 15,
-        TARGET_SDK: 24,
-        BUILD_TOOLS: "23.0.3",
-        KOTLIN: "1.0.3",
-        ANKO: "0.8.3",
-        ANDROID_SUPPORT: "24.2.0",
-        RETROFIT: "2.0.0",
-        OK_HTTP: "3.2.0",
-        DAGGER: "2.0.2",
-        GLIDE: "3.7.0",
-        JSR_250: "1.0",
-        RX_ANDROID: "1.1.0",
-        RX_JAVA: "1.1.1",
-        JUNIT: "4.12"
+ext.versions = [COMPILE_SDK    : 24,
+                MIN_SDK        : 15,
+                TARGET_SDK     : 24,
+                BUILD_TOOLS    : "23.0.3",
+                KOTLIN         : "1.0.3",
+                ANKO           : "0.8.3",
+                ANDROID_SUPPORT: "24.2.0",
+                RETROFIT       : "2.0.0",
+                OK_HTTP        : "3.2.0",
+                DAGGER         : "2.6.1",
+                GLIDE          : "3.7.0",
+                JSR_250        : "1.0",
+                RX_ANDROID     : "1.2.1",
+                RX_JAVA        : "1.1.9",
+                RX_KOTLIN      : "0.60.0",
+                RX_BINDING     : "0.4.0",
+                JUNIT          : "4.12",
+                SPEK           : "1.0.89",
+                MOCKITO_KOTLIN : "0.6.0",
+                LEAK_CANARY    : "1.4-beta2"
+
 ]

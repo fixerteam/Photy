@@ -46,6 +46,12 @@ dependencies {
   // Rx dependencies
   compile "io.reactivex:rxandroid:$versions.RX_ANDROID"
   compile "io.reactivex:rxjava:$versions.RX_JAVA"
+  compile "io.reactivex:rxkotlin:$versions.RX_KOTLIN"
+  compile "com.jakewharton.rxbinding:rxbinding-kotlin:$versions.RX_BINDING"
+  compile "com.jakewharton.rxbinding:rxbinding-support-v4-kotlin:$versions.RX_BINDING"
+  compile "com.jakewharton.rxbinding:rxbinding-appcompat-v7-kotlin:$versions.RX_BINDING"
+  compile "com.jakewharton.rxbinding:rxbinding-design-kotlin:$versions.RX_BINDING"
+  compile "com.jakewharton.rxbinding:rxbinding-recyclerview-v7-kotlin:$versions.RX_BINDING"
 
   // Dagger dependencies
   compile "com.google.dagger:dagger:$versions.DAGGER"
@@ -65,12 +71,19 @@ dependencies {
   compile "com.squareup.okhttp3:logging-interceptor:$versions.OK_HTTP"
   compile "com.squareup.okhttp3:okhttp:$versions.OK_HTTP"
 
+  // LeakCanary
+  debugCompile "com.squareup.leakcanary:leakcanary-android:$versions.LEAK_CANARY"
+  releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:$versions.LEAK_CANARY"
+  testCompile "com.squareup.leakcanary:leakcanary-android-no-op:$versions.LEAK_CANARY"
+
   // Other dependencies
   compile "com.github.bumptech.glide:glide:$versions.GLIDE"
   provided "javax.annotation:jsr250-api:$versions.JSR_250"
 
   // Tests dependencies
   testCompile "junit:junit:$versions.JUNIT"
+  testCompile "org.jetbrains.spek:spek-api:$versions.SPEK"
+  testCompile "com.nhaarman:mockito-kotlin:$versions.MOCKITO_KOTLIN"
 }
 
 buildscript {

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy.SOURCE
 import com.bumptech.glide.request.target.Target
 import java.util.*
 
@@ -17,7 +18,7 @@ private val GLIDE_TARGETS: MutableMap<ImageView, Target<*>> = WeakHashMap<ImageV
  * @param imageUrl - image url.
  */
 fun ImageView.loadUrl(imageUrl: String) {
-  GLIDE_TARGETS.put(this, Glide.with(context).load(imageUrl).into(this)!!)
+  GLIDE_TARGETS.put(this, Glide.with(context).load(imageUrl).diskCacheStrategy(SOURCE).into(this)!!)
 }
 
 /**

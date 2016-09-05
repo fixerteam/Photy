@@ -72,7 +72,6 @@ class PhotoInteractor @Inject constructor(
               Glide.with(appContext)
                   .load(photo.imageUrl)
                   .downloadOnly(SIZE_ORIGINAL, SIZE_ORIGINAL)
-                  .get()
             }.toList().toSingle()
       }
 

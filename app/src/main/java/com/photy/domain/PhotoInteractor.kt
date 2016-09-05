@@ -1,5 +1,8 @@
 package com.photy.domain
 
+import android.content.Context
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.Target.SIZE_ORIGINAL
 import com.photy.BuildConfig.CONSUMER_KEY
 import com.photy.data.entity.Feature
 import com.photy.data.entity.Feature.*
@@ -7,12 +10,13 @@ import com.photy.data.entity.Photo
 import com.photy.data.entity.PhotosResponse
 import com.photy.data.repository.PhotoRepository
 import com.photy.ext.arrayMapOf
+import rx.Observable.from
 import rx.Single
-import rx.Single.just
 import rx.SingleSubscriber
 import javax.inject.Inject
 
 class PhotoInteractor @Inject constructor(
+    private val appContext: Context,
     private val photoRepository: PhotoRepository) : BaseInteractor<List<Photo>>() {
 
   private var currentPage = 1
@@ -50,7 +54,7 @@ class PhotoInteractor @Inject constructor(
   }
 
   private fun needLoaded(): Boolean {
-    if (loadMore && ! isLoading) {
+    if (loadMore && !isLoading) {
       isLoading = true
       return true
     } else {
@@ -62,8 +66,14 @@ class PhotoInteractor @Inject constructor(
       stream.flatMap {
         this.isLoading = false
         this.loadMore = currentPage <= it.totalPages
-        this.currentPage ++
-        return@flatMap just(it.photos)
+        this.currentPage++
+        return@flatMap from(it.photos)
+            .doOnNext { photo ->
+              Glide.with(appContext)
+                  .load(photo.imageUrl)
+                  .downloadOnly(SIZE_ORIGINAL, SIZE_ORIGINAL)
+                  .get()
+            }.toList().toSingle()
       }
 
   private fun flushData() {

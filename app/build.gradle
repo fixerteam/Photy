@@ -84,6 +84,7 @@ dependencies {
   testCompile "junit:junit:$versions.JUNIT"
   testCompile "org.jetbrains.spek:spek-api:$versions.SPEK"
   testCompile "com.nhaarman:mockito-kotlin:$versions.MOCKITO_KOTLIN"
+  testCompile "de.jodamob.kotlin:kotlin-runner-junit4:$versions.KOTLIN_RUNNER"
 }
 
 buildscript {

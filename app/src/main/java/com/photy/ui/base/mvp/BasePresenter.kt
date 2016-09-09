@@ -17,5 +17,5 @@ abstract class BasePresenter<V : BaseView> {
     viewRef = null
   }
 
-  protected fun getView() = viewRef?.get()
+  fun getView() = viewRef?.get()
 }

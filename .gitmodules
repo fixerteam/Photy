@@ -1,0 +1,3 @@
+[submodule "recycler_adapter"]
+	path = recycler_adapter
+	url = https://github.com/fixerteam/RecyclerAdapter.git

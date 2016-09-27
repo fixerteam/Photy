@@ -25,6 +25,13 @@ android {
   sourceSets {
     main.java.srcDirs += 'src/main/kotlin'
   }
+  packagingOptions {
+    exclude 'META-INF/LICENSE'
+    exclude 'META-INF/DEPENDENCIES'
+    exclude 'META-INF/NOTICE'
+    exclude 'META-INF/ASL2.0'
+    exclude 'META-INF/services/javax.annotation.processing.Processor'
+  }
 }
 
 kapt {
@@ -85,6 +92,7 @@ dependencies {
   testCompile "org.jetbrains.spek:spek-api:$versions.SPEK"
   testCompile "com.nhaarman:mockito-kotlin:$versions.MOCKITO_KOTLIN"
   testCompile "de.jodamob.kotlin:kotlin-runner-junit4:$versions.KOTLIN_RUNNER"
+  testCompile "org.jetbrains.kotlin:kotlin-stdlib:$versions.KOTLIN"
 }
 
 buildscript {
